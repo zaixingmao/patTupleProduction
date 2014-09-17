@@ -20,3 +20,9 @@ export USER_CXXFLAGS="-Wno-delete-non-virtual-dtor -Wno-error=unused-but-set-var
 scram b -j 8
 
 source ./FinalStateAnalysis/environment.sh
+
+#to submit jobs
+cd FinalStateAnalysis/PatTools/test/
+python submit_tuplization_new.py bothTauID --samples "W*JetsToLNu*" > WJets
+source WJets
+#beware, data submission is a bit more tricky, please the file that you source on for data files
