@@ -21,6 +21,11 @@ scram b -j 8
 
 source ./FinalStateAnalysis/environment.sh
 
+#local jobs
+ cd FinalStateAnalysis/PatTools/test
+ ./patTuple_cfg.py isMC=0 globalTag=$datagt inputFiles=file:/hdfs/store/data/Run2012A/Tau/AOD/22Jan2013-v1/20000/7CD7448E-9E79-E211-B184-00266CF9B254.root maxEvents=1000 outputFile=myTestFile.root
+ 
+ 
 #to submit jobs
 cd FinalStateAnalysis/PatTools/test/
 python submit_tuplization_new.py bothTauID --samples "W*JetsToLNu*" > WJets
