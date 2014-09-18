@@ -4,9 +4,9 @@ scram project CMSSW_5_3_14
 cd CMSSW_5_3_14/src
 cmsenv
 
-git clone https://github.com/zaixingmao/patTupleProduction.git
 
 git cms-init
+git clone https://github.com/zaixingmao/patTupleProduction.git
 git clone --recursive https://github.com/uwcms/FinalStateAnalysis.git
 
 cd FinalStateAnalysis
