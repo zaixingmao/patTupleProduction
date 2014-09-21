@@ -154,13 +154,13 @@ eTauPath = cms.Path(atLeastOneGoodVertexSequence + e17Selector + e19Selector +
 skimConfig.paths.append("eTauPath")
 
 # DoubleTau
-tau30JetSelector = cms.EDFilter(
-    "PFTauSelector",
+tau40Selector = cms.EDFilter(
+    "PFTauSelector2",  # note "2" in name
     src=cms.InputTag("hpsPFTauProducer"),
-    cut=cms.string("abs(eta) < 2.3 & pt > 30.0"),
+    cut=cms.string("abs(eta) < 2.3 & pt > 40.0"),
     discriminators=cms.VPSet(
-    cms.PSet(discriminator=cms.InputTag("hpsPFTauDiscriminationByDecayModeFindingNewDMs"),
-             selectionCut=cms.double(0.5)
+    cms.PSet(discriminator=cms.InputTag("hpsPFTauDiscriminationByRawCombinedIsolationDBSumPtCorr3Hits"),
+             selectionCut=cms.double(10.0)  # maximum of 10
              ),
     ),
     filter=cms.bool(False)
@@ -168,34 +168,13 @@ tau30JetSelector = cms.EDFilter(
 
 twoTaus = cms.EDFilter(
     "CandViewCountFilter",
-    src=cms.InputTag("tau30JetSelector"),
+    src=cms.InputTag("tau40Selector"),
     minNumber=cms.uint32(2)
 )
 
-doubleTauPath = cms.Path(atLeastOneGoodVertexSequence + tau30JetSelector + twoTaus)
+doubleTauPath = cms.Path(atLeastOneGoodVertexSequence + tau40Selector + twoTaus)
 skimConfig.paths.append("doubleTauPath")
 
-# DoubleTauOld
-tau30JetSelectorOld = cms.EDFilter(
-    "PFTauSelector",
-    src=cms.InputTag("hpsPFTauProducer"),
-    cut=cms.string("abs(eta) < 2.3 & pt > 30.0"),
-    discriminators=cms.VPSet(
-    cms.PSet(discriminator=cms.InputTag("hpsPFTauDiscriminationByDecayModeFinding"),
-             selectionCut=cms.double(0.5)
-             ),
-    ),
-    filter=cms.bool(False)
-)
-
-twoTausOld = cms.EDFilter(
-    "CandViewCountFilter",
-    src=cms.InputTag("tau30JetSelectorOld"),
-    minNumber=cms.uint32(2)
-)
-
-doubleTauPathOld = cms.Path(atLeastOneGoodVertexSequence + tau30JetSelectorOld + twoTausOld)
-skimConfig.paths.append("doubleTauPathOld")
 
 # DoubleE for ZZ, VH, and HZG
 e8Selector = cms.EDFilter(
@@ -269,3 +248,10 @@ pho20Selector = cms.EDFilter(
 pho15Pho20Path = cms.Path(atLeastOneGoodVertexSequence + pho20Selector +
                           pho15Selector + twoPhotonsAbove15)
 skimConfig.paths.append("pho15Pho20Path")
+
+
+#  remove all paths but one
+rmPaths = [x for x in skimConfig.paths]
+rmPaths.remove("doubleTauPath")
+for x in rmPaths:
+    skimConfig.paths.remove(x)
