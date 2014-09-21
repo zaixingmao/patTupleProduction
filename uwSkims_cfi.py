@@ -155,13 +155,13 @@ skimConfig.paths.append("eTauPath")
 
 # DoubleTau
 tau40Selector = cms.EDFilter(
-    "PFTauSelector",
+    "PFTauSelector2",  # note "2" in name
     src=cms.InputTag("hpsPFTauProducer"),
     cut=cms.string("abs(eta) < 2.3 & pt > 40.0"),
     discriminators=cms.VPSet(
-    #cms.PSet(discriminator=cms.InputTag("hpsPFTauDiscriminationByRawCombinedIsolationDBSumPtCorr3Hits"),
-    #         selectionCut=cms.double(10.0)
-    #         ),
+    cms.PSet(discriminator=cms.InputTag("hpsPFTauDiscriminationByRawCombinedIsolationDBSumPtCorr3Hits"),
+             selectionCut=cms.double(10.0)  # maximum of 10
+             ),
     ),
     filter=cms.bool(False)
 )
