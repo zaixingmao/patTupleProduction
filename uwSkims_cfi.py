@@ -248,3 +248,10 @@ pho20Selector = cms.EDFilter(
 pho15Pho20Path = cms.Path(atLeastOneGoodVertexSequence + pho20Selector +
                           pho15Selector + twoPhotonsAbove15)
 skimConfig.paths.append("pho15Pho20Path")
+
+
+#  remove all paths but one
+rmPaths = [x for x in skimConfig.paths]
+rmPaths.remove("doubleTauPath")
+for x in rmPaths:
+    skimConfig.paths.remove(x)
