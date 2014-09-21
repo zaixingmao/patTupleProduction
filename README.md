@@ -34,8 +34,10 @@ cd FinalStateAnalysis/PatTools/test
 
 ####to submit jobs
 ```
+# edit MetaData/python/data8TeVNew.py to include relevant samples
+# NOTE! data samples must start with 'data_'
 cd FinalStateAnalysis/PatTools/test/
-python submit_tuplization_new.py bothTauID --samples "W*JetsToLNu*" > WJets
+python submit_tuplization.py arbitrary_name_for_subdirectory --samples "W*JetsToLNu*" > WJets
+# check that isMC and globalTag are appropriate
 source WJets
 ```
-**beware, data submission is a bit more tricky, please check the file that you source for data files**
