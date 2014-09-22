@@ -30,14 +30,13 @@ cd FinalStateAnalysis
 cd recipe/
 PATPROD=1 LUMI=1 LIMITS=0 ./recipe.sh
 cd ../../
+cp patTupleProduction/uwSkims_cfi.py FinalStateAnalysis/RecoTools/python
+cp patTupleProduction/PFTauSelectorDefinition2.h RecoTauTag/TauTagTools/plugins/
+cp patTupleProduction/PFTauSelector2.cc RecoTauTag/TauTagTools/plugins/
 ```
 
 ####build
 ```bash
-cp patTupleProduction/uwSkims_cfi.py FinalStateAnalysis/RecoTools/python
-cp patTupleProduction/PFTauSelectorDefinition2.h RecoTauTag/TauTagTools/plugins/
-cp patTupleProduction/PFTauSelector2.cc RecoTauTag/TauTagTools/plugins/
-
 export USER_CXXFLAGS="-Wno-delete-non-virtual-dtor -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=sign-compare -Wno-error=reorder"
 scram b -j 8
 
@@ -47,7 +46,7 @@ source ./FinalStateAnalysis/environment.sh
 ####local jobs
 ```bash
 cd FinalStateAnalysis/PatTools/test
-./patTuple_cfg.py isMC=0 globalTag=$datagt inputFiles=file:/hdfs/store/data/Run2012A/Tau/AOD/22Jan2013-v1/20000/7CD7448E-9E79-E211-B184-00266CF9B254.root maxEvents=1000 outputFile=myTestFile.root
+./patTuple_cfg.py isMC=0 globalTag=$datagt inputFiles=file:/hdfs/store/data/Run2012A/Tau/AOD/22Jan2013-v1/20000/7CD7448E-9E79-E211-B184-00266CF9B254.root maxEvents=100 outputFile=myTestFile.root
 ```
 
 ####to submit jobs
