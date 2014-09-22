@@ -1,5 +1,5 @@
 ####in .bashrc
-```
+```bash
 export CMSSW_GIT_REFERENCE=/nfs_scratch/$USER/.cmsgit-cache
 ```
 ####cmssw
