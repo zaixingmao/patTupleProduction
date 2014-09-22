@@ -23,8 +23,6 @@ PATPROD=1 LUMI=1 LIMITS=0 ./recipe.sh
 cd ../../
 ```
 
-######or
-
 ######new
 ```bash
 git clone --recursive https://github.com/uwcms/FinalStateAnalysis.git
