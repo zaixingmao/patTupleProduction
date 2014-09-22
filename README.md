@@ -2,7 +2,7 @@
 ```
 export CMSSW_GIT_REFERENCE=/nfs_scratch/$USER/.cmsgit-cache
 ```
-####commands
+####cmssw
 ```bash
 scram project CMSSW_5_3_14
 cd CMSSW_5_3_14/src
@@ -12,7 +12,8 @@ git cms-init --https
 git clone https://github.com/zaixingmao/patTupleProduction.git
 ```
 
-######old ID
+####choose an ID
+######old
 ```bash
 git clone --recursive https://github.com/elaird/FinalStateAnalysis.git
 cd FinalStateAnalysis
@@ -22,7 +23,9 @@ PATPROD=1 LUMI=1 LIMITS=0 ./recipe.sh
 cd ../../
 ```
 
-######new ID
+######or
+
+######new
 ```bash
 git clone --recursive https://github.com/uwcms/FinalStateAnalysis.git
 cd FinalStateAnalysis
@@ -31,6 +34,7 @@ PATPROD=1 LUMI=1 LIMITS=0 ./recipe.sh
 cd ../../
 ```
 
+####build
 ```bash
 cp patTupleProduction/uwSkims_cfi.py FinalStateAnalysis/RecoTools/python
 cp patTupleProduction/PFTauSelectorDefinition2.h RecoTauTag/TauTagTools/plugins/
